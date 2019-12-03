@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "alwaysStrict": true,
+        "allowJs": true,
+        "outDir": "./out",
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "lib": [
+            "es5"
+        ],
+        "module": "UMD",
+        "noFallthroughCasesInSwitch": false,
+        "noImplicitAny": false,
+        "noImplicitReturns": false,
+        "noImplicitThis": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": false,
+        "preserveConstEnums": false,
+        "strictNullChecks": true,
+    },
+    "include": [
+        "src/**/*",
+        "test/**/*"
+    ],
+    "exclude": [
+        "node_modules/**/*"
+    ]
+}

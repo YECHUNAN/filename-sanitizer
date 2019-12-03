@@ -1,0 +1,22 @@
+{
+  "name": "filename-sanitizer",
+  "version": "0.1.0",
+  "description": "Sanitize filename depending on your platform",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "node test.js",
+    "build": "node build.js",
+    "clean": "git -fdx"
+  },
+  "author": "Chunan Ye",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.2.6",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^10.17.6",
+    "chai": "4.2.0",
+    "mocha": "6.2.2",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  }
+}
