@@ -2,7 +2,6 @@
     "compilerOptions": {
         "target": "es5",
         "alwaysStrict": true,
-        "allowJs": true,
         "outDir": "./out",
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
@@ -18,6 +17,7 @@
         "noUnusedParameters": false,
         "preserveConstEnums": false,
         "strictNullChecks": true,
+        "declaration": true
     },
     "include": [
         "src/**/*",
