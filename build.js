@@ -15,4 +15,6 @@ if (platform === "win32") {
 
 // copy non-test files to dist
 fs.copyFileSync(path.resolve("out", "src", "index.js"), path.resolve("dist", "index.js"));
+fs.copyFileSync(path.resolve("out", "src", "index.d.ts"), path.resolve("dist", "index.d.ts"));
+fs.copyFileSync(path.resolve("out", "src", "Sanitizer.d.ts"), path.resolve("dist", "Sanitizer.d.ts"));
 fs.copyFileSync(path.resolve("out", "src", "Sanitizer.js"), path.resolve("dist", "Sanitizer.js"));
