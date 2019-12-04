@@ -3,3 +3,5 @@ package-lock.json
 out/*
 dist/*
 .DS_Store
+*.tgz
+.npmrc
