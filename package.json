@@ -1,7 +1,10 @@
 {
   "name": "filename-sanitizer",
   "version": "0.1.0",
-  "description": "Sanitize filename depending on your platform",
+  "description": "Sanitize filename across multiple platforms",
+  "repository": {
+    "url": "https://github.com/YECHUNAN/filename-sanitizer"
+  },
   "main": "dist/index.js",
   "scripts": {
     "test": "node test.js",
