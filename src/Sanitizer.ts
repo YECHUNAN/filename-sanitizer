@@ -91,6 +91,9 @@ export class Sanitizer {
             if (index === 0 && /[a-zA-Z]:/.test(segmentName)) {
                 return segmentName;
             }
+            if (index !== 0 && segmentName === "") {
+                return "NO_NAME";
+            }
             return this.sanitizeWindows(segmentName);
         });
         return UNCPrefix + pathSegments.join("\\");
@@ -99,7 +102,10 @@ export class Sanitizer {
     public static sanitizePathDarwin(pathName: string) {
         let pathSegments: string[];
         pathSegments = pathName.split("/");
-        pathSegments = pathSegments.map((segmentName) => {
+        pathSegments = pathSegments.map((segmentName, index) => {
+            if (index !== 0 && segmentName === "") {
+                return "NO_NAME";
+            }
             return this.sanitizeDarwin(segmentName);
         });
         return pathSegments.join("/");
@@ -108,7 +114,10 @@ export class Sanitizer {
     public static sanitizePathLinux(pathName: string) {
         let pathSegments: string[];
         pathSegments = pathName.split("/");
-        pathSegments = pathSegments.map((segmentName) => {
+        pathSegments = pathSegments.map((segmentName, index) => {
+            if (index !== 0 && segmentName === "") {
+                return "NO_NAME";
+            }
             return this.sanitizeLinux(segmentName);
         });
         return pathSegments.join("/");

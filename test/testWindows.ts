@@ -87,4 +87,10 @@ describe("Test windows sanitizing", function() {
         var sanitized = Sanitizer.sanitizePathWindows(filePath);
         expect(sanitized).to.equals("\\\\?\\C:\\User\\username\\%3C%3E%3A%22%2F%7C%3F%2A%0\\file", "Should encode invalid characters in the absolute path segments");
     });
+
+    it("No name directory", function () {
+        var filePath = ".\\\\file";
+        var sanitized = Sanitizer.sanitizePathWindows(filePath);
+        expect(sanitized).to.equals(".\\NO_NAME\\file", "Should replace no name directory with 'NO_NAME'");
+    });
 });

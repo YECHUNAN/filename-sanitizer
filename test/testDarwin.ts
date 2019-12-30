@@ -50,4 +50,10 @@ describe("Test darwin sanitizing", function() {
         var sanitized = Sanitizer.sanitizePathDarwin(filePath);
         expect(sanitized).to.equals("../folder/%0/file", "Should encode \\0 in the relative path segments");
     });
+
+    it("No name directory", function () {
+        var filePath = ".//file";
+        var sanitized = Sanitizer.sanitizePathDarwin(filePath);
+        expect(sanitized).to.equals("./NO_NAME/file", "Should replace no name directory with 'NO_NAME'");
+    });
 });
