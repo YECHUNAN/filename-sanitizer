@@ -51,4 +51,40 @@ describe("Test windows sanitizing", function() {
             expect(sanitized).to.equals(resultList[index], `Should encode ${filename} to ${resultList[index]}`);
         });
     });
+
+    it("Valid absolute path", function() {
+        var filePath = "C:\\User\\username\\Desktop\\folder";
+        var sanitized = Sanitizer.sanitizePathWindows(filePath);
+        expect(sanitized).to.equals(filePath, "Should keep valid absolute path as the same");
+    });
+
+    it("Valid relative path", function() {
+        var filePath = "..\\folder\\file";
+        var sanitized = Sanitizer.sanitizePathWindows(filePath);
+        expect(sanitized).to.equals(filePath, "Should keep valid relative path as the same");
+    });
+
+    it("Invalid absolute path", function() {
+        var filePath = "C:\\User\\username\\<>:\"/|?*\0\\file";
+        var sanitized = Sanitizer.sanitizePathWindows(filePath);
+        expect(sanitized).to.equals("C:\\User\\username\\%3C%3E%3A%22%2F%7C%3F%2A%0\\file", "Should encode invalid characters in the absolute path segments");
+    });
+    
+    it("Invalid relative path", function() {
+        var filePath = "..\\folder\\<>:\"/|?*\0\\file";
+        var sanitized = Sanitizer.sanitizePathWindows(filePath);
+        expect(sanitized).to.equals("..\\folder\\%3C%3E%3A%22%2F%7C%3F%2A%0\\file", "Should encode invalid characters in the relative path segments");
+    });
+
+    it("Valid UNC path", function() {
+        var filePath = "\\\\?\\C:\\User\\username\\Desktop\\folder";
+        var sanitized = Sanitizer.sanitizePathWindows(filePath);
+        expect(sanitized).to.equals(filePath, "Should keep valid absolute path as the same");
+    });
+
+    it("Invalid UNC path", function() {
+        var filePath = "\\\\?\\C:\\User\\username\\<>:\"/|?*\0\\file";
+        var sanitized = Sanitizer.sanitizePathWindows(filePath);
+        expect(sanitized).to.equals("\\\\?\\C:\\User\\username\\%3C%3E%3A%22%2F%7C%3F%2A%0\\file", "Should encode invalid characters in the absolute path segments");
+    });
 });
