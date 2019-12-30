@@ -1,5 +1,4 @@
 import * as os from "os";
-import * as path from "path";
 
 type SanitizePair = { origin: string, replacement: string };
 
@@ -83,36 +82,36 @@ export class Sanitizer {
         let UNCPrefix = pathName.startsWith("\\\\?\\") ? "\\\\?\\" : "";
         // handle UNC path, which start with \\?\
         if (!!UNCPrefix) {
-            pathSegments = pathName.slice(4).split(path.sep);
+            pathSegments = pathName.slice(4).split("\\");
         } else {
-            pathSegments = pathName.split(path.sep);
+            pathSegments = pathName.split("\\");
         }
         // handle the disk part in path (e.g. C:)
         pathSegments = pathSegments.map((segmentName, index) => {
             if (index === 0 && /[a-zA-Z]:/.test(segmentName)) {
                 return segmentName;
             }
-            return this.sanitize(segmentName);
+            return this.sanitizeWindows(segmentName);
         });
-        return UNCPrefix + pathSegments.join(path.sep);
+        return UNCPrefix + pathSegments.join("\\");
     }
 
     public static sanitizePathDarwin(pathName: string) {
         let pathSegments: string[];
-        pathSegments = pathName.split(path.sep);
+        pathSegments = pathName.split("/");
         pathSegments = pathSegments.map((segmentName) => {
-            return this.sanitize(segmentName);
+            return this.sanitizeDarwin(segmentName);
         });
-        return pathSegments.join(path.sep);
+        return pathSegments.join("/");
     }
 
     public static sanitizePathLinux(pathName: string) {
         let pathSegments: string[];
-        pathSegments = pathName.split(path.sep);
+        pathSegments = pathName.split("/");
         pathSegments = pathSegments.map((segmentName) => {
-            return this.sanitize(segmentName);
+            return this.sanitizeLinux(segmentName);
         });
-        return pathSegments.join(path.sep);
+        return pathSegments.join("/");
     }
 }
 
