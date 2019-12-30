@@ -1,6 +1,6 @@
 {
   "name": "filename-sanitizer",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Sanitize filename across multiple platforms",
   "repository": {
     "url": "https://github.com/YECHUNAN/filename-sanitizer"
